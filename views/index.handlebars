@@ -13,12 +13,20 @@
     <div class="Main-container">
 
         <div class="topnav"><a href="/">
-                <a class="active" href="/">Home</a>
+                {{!-- <a class="active" href="/">Home</a> --}}
                 <a href="/"></a>
         </div>
+        <div class="message">
+				{{messages.message}}
+			</div>
+       <br>
+       <br>
+       <br>
+        <h1>Waiters Availability</h1>
 
-        <h1 style="">Waiters Availability</h1>
-        <form action="/waiters" method="POST">
+        <h1 style="font-size: 40px;">Sign In</h1>
+
+        <form action="/login" method="POST">
             <div class="container">
                 <input type="text" name="letters" class="NameEntered" value="" placeholder="enter a your name">
                 <button type="submit" class="btnblue">Sign in</button>
@@ -27,12 +35,12 @@
             <div class="Customers">
                 {{#each output}}
                 <div class="output">
-                    {{this.}}
+                    {{this.output}}
                 </div>
                 {{/each}}
             </div>
         </form>
     </div>
 </body>
-
+<script src="setTimeout.js"></script>
 </html>

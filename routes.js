@@ -1,3 +1,3 @@
-module.exports = function Waiters() {
-
+module.exports = function Routes() {
+    
 }

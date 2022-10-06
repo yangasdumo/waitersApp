@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+    <div class="Container">
+
+         <div class="topnav"><a href="">
+                <a class="active" href="/" style="font-size: 20px;">Home</a>
+                <a href="/admin" style="font-size: 20px;"> Admin</a>
+        </div>
+        <br>
+        <br>
+        <div class="message">
+				{{messages.message}}
+			</div>
+             
+        <h1>Waiter's Schedule</h1>
+        <br>
+        <br><br>
+        <br>
+        <form action="" method="POST">
+        <input type="checkbox" name="thedays" value="Sunday" id="Sunday" {{Sunday}} />
+             <label for="Sunday" class="theDays">Sunday</label>
+        <input type="checkbox" name="thedays" value="monday" id="monday" {{Monday}} />
+         <label for="Monday" class="theDays">Monday</label>
+
+        <input type="checkbox" name="thedays" value="Tuesday" id="Tuesday" {{Tuesday}} />
+         <label for="tuesday" class="theDays">Tuesday</label>
+
+        <input type="checkbox" name="thedays" value="Wednesday" id="Wednesday" {{Wednesday}}/>
+         <label for="Wednesday" class="theDays">Wednesday</label>
+
+        <input type="checkbox" name="thedays" value="Thursday" id="Thursday" {{Thursday}} />
+         <label for="thursday" class="theDays">Thursday</label>
+
+        <input type="checkbox" name="thedays" value="Friday" id="Friday" {{Friday}} />
+         <label for="Friday" class="theDays">Friday</label>
+
+        <input type="checkbox" name="thedays" value="Saturday" id="Saturday" {{Saturday}} />
+         <label for="Saturday" class="theDays">Saturday</label>
+    </div>
+    <br>
+    <br>
+     <button type="submit" class="butt">Submit Days</button>
+    </form>
+</body>
+<script src="setTimeout.js"></script>
+</html>
