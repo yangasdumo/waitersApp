@@ -14,7 +14,7 @@
 				{{messages.message}}
 			</div>  
 
-            <h1>Waiters Availability working Days</h1>
+            <h1 style="color:#141A46">Waiters Availability working Days</h1>
     <form action="/admin" method="POST">
         <table style="width:100%">
             <br>
@@ -22,17 +22,23 @@
             <br>
             <br>
             <tr>
-                <th style="font-size: 20px;">Sunday</th>
-                <th >Monday</th>
-                <th >Tuesday</th>
-                <th >Wednesday</th>
-                <th >Thursday</th>
-                <th >Friday</th>
-                <th >Saturday</th>
+                <th style="color: #141A46;">Sunday</th>
+                <th style="color: #141A46;">Monday</th>
+                <th style="color: #141A46;">Tuesday</th>
+                <th style="color: #141A46;">Wednesday</th>
+                <th style="color: #141A46;">Thursday</th>
+                <th style="color: #141A46;">Friday</th>
+                <th style="color: #141A46;">Saturday</th>
             </tr>
+                 {{#each waiters}}
             <tr>
+                <td>{{this.waiter_id}}</td>
+                <td>{{this. day_id}}</td>
+               
+            </tr>
+             {{/each}}
         </table>
-        <a href="/clear"></a><button type="submit" class="btnblue">Clear Names</button>
+        <a href="/clear"></a><button type="submit" class="btnblue" style="margin: 300px;">Clear Names</button>
     </form>
 </body>
 <script src="setTimeout.js"></script>

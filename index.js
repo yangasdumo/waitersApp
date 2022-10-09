@@ -75,7 +75,8 @@ app.get('/days/:name', async function(req,res){
 });
 
 app.get('/admin', async function(req,res){
-    let  waitersNames = await routes.admin() 
+    // let  waitersNames = await routes.addAdmin()
+    // console.log( waitersNames)
     res.render('admin');
 });
 
