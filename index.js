@@ -56,6 +56,7 @@ app.post('/login', async function (req, res){
     await routes.addName(name);
     let getTheName = await routes.getName(name);
     req.flash('message', "Welcome to the Waiters App !!")
+    console.log(getTheName)
     let myName = getTheName.name;
     res.redirect(`/days/${myName}`);
 });
