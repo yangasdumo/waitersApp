@@ -60,10 +60,21 @@ transform: translateY(4px);
   box-shadow: 0 5px #666;
   transform: translateY(4px);
 }
+
+th{
+  font-size:30px;
+}
+
+.table{
+  font-size:25px ;
+  color: aliceblue;
+  font-style: italic;
+}
 .NameEntered{
   width:200px ;
-  height: 50px;
+  height: 40px;
 }
+
 h1{
   font-size: 60px;
 }

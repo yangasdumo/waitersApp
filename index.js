@@ -56,8 +56,7 @@ app.post('/login', async function (req, res){
     await routes.addName(name);
     let getTheName = await routes.getName(name);
     req.flash('message', "Welcome to the Waiters App !!")
-    console.log(getTheName)
-    let myName = getTheName.name;
+    let myName = getTheName.waiter;
     res.redirect(`/days/${myName}`);
 });
 
@@ -65,22 +64,30 @@ app.post('/days/:name', async function(req,res){
     let theName = req.params.name
     let days = req.body.thedays;
     console.log(days);
+     let name = await  routes.getName(theName)
+     console.log(name)
     await routes.selectDays(days);
+    await routes.addAdmin(name.id, days)
     req.flash('message', "Your days has been subbited !!")
     res.redirect(`/days/${theName}`);
 });
 
 app.get('/days/:name', async function(req,res){
-
-    res.render('days');
+    let weekDays = await routes.selectDays()
+    res.render('days',{
+        weekDays
+    }
+    );
 });
-
+              
 app.get('/admin', async function(req,res){
-    // let  waitersNames = await routes.addAdmin()
-    // console.log( waitersNames)
-    res.render('admin');
+    let  allWaiters = await routes.getAdmin()
+    console.log(allWaiters)
+    res.render('admin',{
+         allWaiters
+    } 
+    );
 });
-
 
 app.get('/clear',async function(req,res){
     await Routes.clear()

@@ -14,7 +14,7 @@
 
          <div class="topnav"><a href="">
                 <a class="active" href="/" style="font-size: 20px;">Home</a>
-                <a href="/admin" style="font-size: 20px;"> Admin</a>
+                <a href="/admin" style="font-size: 20px;">Admin</a>
         </div>
         <br>
         <br>
@@ -27,25 +27,10 @@
         <br><br>
         <br>
         <form action="" method="POST">
-        <input type="checkbox" name="thedays" value="Sunday" id="Sunday" {{Sunday}} />
-             <label for="Sunday" class="theDays">Sunday</label>
-        <input type="checkbox" name="thedays" value="monday" id="monday" {{Monday}} />
-         <label for="Monday" class="theDays">Monday</label>
-
-        <input type="checkbox" name="thedays" value="Tuesday" id="Tuesday" {{Tuesday}} />
-         <label for="tuesday" class="theDays">Tuesday</label>
-
-        <input type="checkbox" name="thedays" value="Wednesday" id="Wednesday" {{Wednesday}}/>
-         <label for="Wednesday" class="theDays">Wednesday</label>
-
-        <input type="checkbox" name="thedays" value="Thursday" id="Thursday" {{Thursday}} />
-         <label for="thursday" class="theDays">Thursday</label>
-
-        <input type="checkbox" name="thedays" value="Friday" id="Friday" {{Friday}} />
-         <label for="Friday" class="theDays">Friday</label>
-
-        <input type="checkbox" name="thedays" value="Saturday" id="Saturday" {{Saturday}} />
-         <label for="Saturday" class="theDays">Saturday</label>
+            {{#each weekDays}}
+            <label for="Sunday" class="theDays">{{day}}</label>
+            <input type="checkbox" name="thedays" value="{{id}}" />
+            {{/each}}
     </div>
     <br>
     <br>

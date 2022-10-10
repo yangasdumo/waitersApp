@@ -1,11 +1,11 @@
 
 CREATE TABLE waiters (
     id serial primary key,
-    name varchar(255) not null
+    waiter varchar(255) not null
 );
 CREATE TABLE working_days (
     id serial primary key,
-    name varchar(255) not null
+    day varchar(255) not null
 );
 
 create table shifts (
@@ -16,10 +16,10 @@ create table shifts (
     FOREIGN KEY (day_id) REFERENCES  working_days(id) ON DELETE CASCADE
 );
 
-INSERT INTO working_days (name) VALUES ('monday');
-INSERT INTO working_days (name) VALUES ('tuesday');
-INSERT INTO working_days (name) VALUES ('wednesday');
-INSERT INTO working_days (name) VALUES ('thursday');
-INSERT INTO working_days (name) VALUES ('friday');
-INSERT INTO working_days (name) VALUES ('saturday');
-INSERT INTO working_days (name) VALUES ('sunday');
+INSERT INTO working_days (day) VALUES ('monday');
+INSERT INTO working_days (day) VALUES ('tuesday');
+INSERT INTO working_days (day) VALUES ('wednesday');
+INSERT INTO working_days (day) VALUES ('thursday');
+INSERT INTO working_days (day) VALUES ('friday');
+INSERT INTO working_days (day) VALUES ('saturday');
+INSERT INTO working_days (day) VALUES ('sunday');

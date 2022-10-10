@@ -30,13 +30,11 @@
                 <th style="color: #141A46;">Friday</th>
                 <th style="color: #141A46;">Saturday</th>
             </tr>
-                 {{#each waiters}}
-            <tr>
-                <td>{{this.waiter_id}}</td>
-                <td>{{this. day_id}}</td>
-               
-            </tr>
+            <tr class="table">
+                 {{#each allWaiters}}
+                <td>{{this.waiter}}</td>
              {{/each}}
+            </tr>
         </table>
         <a href="/clear"></a><button type="submit" class="btnblue" style="margin: 300px;">Clear Names</button>
     </form>
