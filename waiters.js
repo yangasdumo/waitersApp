@@ -19,7 +19,12 @@ module.exports = function waiter(db) {
 
     // getting the the names of the admin 
     async function addAdmin(waiters, working_days) {
-        return await db.none(`INSERT INTO shifts (waiter_id,day_id) VALUES($1,$2)`, [waiters, working_days]);
+        // loop over your days
+        for (let i = 0; i < working_days.length; i++) {
+            const element = working_days[i];
+            console.log(element);
+             await db.none(`INSERT INTO shifts (waiter_id,day_id) VALUES($1,$2)`, [waiters, element]);
+        }
     }
 
     async function getAdmin(weekDay) {
