@@ -5,7 +5,7 @@ const exphbs = require("express-handlebars");
 const bodyParser = require('body-parser');
 const Routes = require('./waiters');
 const waiter = require('./waiters.js');
-const { redirect } = require('express/lib/response');
+
 
 const app = express();
 app.use(flash());
