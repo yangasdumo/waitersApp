@@ -100,13 +100,12 @@ app.get('/admin', async function (req, res) {
 });
 
 app.get('/admin', async function (req, res) {
-    await Routes.clear()
-    req.flash('message', "All Data Has Been Cleared !!")
     res.redirect('/admin')
-
 });
 
-app.post('/clear',async function (req, res){
+app.post('/admin',async function (req, res){
+    await routes.clear()
+    req.flash('message', "All Data Has Been Cleared !!")
         
     res.redirect('/admin')
 });

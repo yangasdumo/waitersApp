@@ -28,7 +28,8 @@ module.exports = function waiter(db) {
     }
 
     async function clear() {
-        await db.none('delete from shifts')
+        let remove =  await db.none('delete from shifts')
+        return remove
 
     }
 

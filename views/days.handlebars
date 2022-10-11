@@ -24,12 +24,12 @@
              
         <h1 style="color:#141A46">Waiter's Schedule</h1>
         <br>
-        <br><br>
+        <strong style="color:grey;"><p><i>Please select the days for you Schedule !!!</i></p></strong>
         <br>
         <form action="" method="POST">
             {{#each weekDays}}
-            <label for="Sunday" class="theDays">{{day}}</label>
             <input type="checkbox" name="thedays" value="{{id}}" />
+            <label for="Sunday" class="theDays">{{day}}</label>
             {{/each}}
     </div>
     <br>
