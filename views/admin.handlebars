@@ -9,16 +9,16 @@
     <link rel="stylesheet" href="/css/style.css">
 </head>
 
-<body>   
+<body>
     <div class="message">
-				{{messages.message}}
-			</div>  
+        {{messages.message}}
+    </div>
 
-            <h1 style="color:#141A46">Waiters Availability working Days</h1>
+    <h1 style="color:#141A46">Waiters Availability working Days</h1>
     <form action="/admin" method="POST">
         <table style="width:100%">
             <br>
-            <br> 
+            <br>
             <br>
             <br>
             <tr>
@@ -31,13 +31,41 @@
                 <th style="color: #141A46;">Saturday</th>
             </tr>
             <tr class="table">
-                 {{#each allWaiters}}
+                {{#each sundayWaiters}}
                 <td>{{this.waiter}}</td>
-             {{/each}}
+                {{/each}}
+
+                {{#each mondayWaiters}}
+                <td>{{this.waiter}}</td>
+                {{/each}}
+                
+                 {{#each tuesdayWaiters}}
+                <td>{{this.waiter}}</td>
+                {{/each}}
+                  
+                  {{#each wednsdayaiters}}
+                <td>{{this.waiter}}</td>
+                {{/each}}
+
+                 {{#each thursdayWaiters}}
+                <td>{{this.waiter}}</td>
+                {{/each}}
+
+                {{#each fridayWaiters}}
+                <td>{{this.waiter}}</td>
+                {{/each}}
+
+                {{#each sartudayWaiters}}
+                <td>{{this.waiter}}</td>
+                {{/each}}
+
             </tr>
+
+
         </table>
         <a href="/clear"></a><button type="submit" class="btnblue" style="margin: 300px;">Clear Names</button>
     </form>
 </body>
-<script src="setTimeout.js"></script>
+<script src="/setTimeout.js"></script>
+
 </html>

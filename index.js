@@ -66,8 +66,8 @@ app.post('/days/:name', async function (req, res) {
     let days = req.body.thedays;
     let name = await routes.getName(theName)
     await routes.selectDays(days);
-    await routes.addAdmin(name.id, days)
-    req.flash('message', "Your days has been subbited !!")
+    await routes.addAdmin(name.id,days);
+    req.flash('message', "Your days has been subbited !!");
     res.redirect(`/days/${theName}`);
 });
 
@@ -80,9 +80,21 @@ app.get('/days/:name', async function (req, res) {
 });
 
 app.get('/admin', async function (req, res) {
-    let allWaiters = await routes.getAdmin()
+    let mondayWaiters = await routes.getAdmin('monday');
+    let tuesdayWaiters = await routes.getAdmin('tuesday');
+    let wednsdayaiters = await routes.getAdmin('wednesday');
+    let thursdayWaiters = await routes.getAdmin('thursday');
+    let fridayWaiters = await routes.getAdmin('friday');
+    let sartudayWaiters = await routes.getAdmin('saturday');
+    let sundayWaiters = await routes.getAdmin('sunday');
     res.render('admin', {
-        allWaiters
+        mondayWaiters,
+        tuesdayWaiters,
+        wednsdayaiters,
+        thursdayWaiters,
+        fridayWaiters,
+        sartudayWaiters,
+        sundayWaiters
     }
     );
 });

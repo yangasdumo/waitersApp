@@ -1,4 +1,4 @@
 setTimeout(function () {
-    document.querySelector(".message").innerHTML = ''
+    document.querySelector(".message").innerHTML = '';
 },
 3000);
