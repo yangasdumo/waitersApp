@@ -4,7 +4,8 @@ const session = require('express-session');
 const exphbs = require("express-handlebars");
 const bodyParser = require('body-parser');
 const Routes = require('./waiters');
-const waiter = require ('./waiters.js')
+const waiter = require('./waiters.js');
+const { redirect } = require('express/lib/response');
 
 const app = express();
 app.use(flash());
@@ -51,7 +52,7 @@ app.get("/", function (req, res) {
     });
 })
 
-app.post('/login', async function (req, res){
+app.post('/login', async function (req, res) {
     let name = req.body.letters;
     await routes.addName(name);
     let getTheName = await routes.getName(name);
@@ -60,41 +61,44 @@ app.post('/login', async function (req, res){
     res.redirect(`/days/${myName}`);
 });
 
-app.post('/days/:name', async function(req,res){
+app.post('/days/:name', async function (req, res) {
     let theName = req.params.name
     let days = req.body.thedays;
-    console.log(days);
-     let name = await  routes.getName(theName)
-     console.log(name)
+    let name = await routes.getName(theName)
     await routes.selectDays(days);
     await routes.addAdmin(name.id, days)
     req.flash('message', "Your days has been subbited !!")
     res.redirect(`/days/${theName}`);
 });
 
-app.get('/days/:name', async function(req,res){
+app.get('/days/:name', async function (req, res) {
     let weekDays = await routes.selectDays()
-    res.render('days',{
+    res.render('days', {
         weekDays
     }
     );
 });
-              
-app.get('/admin', async function(req,res){
-    let  allWaiters = await routes.getAdmin()
-    console.log(allWaiters)
-    res.render('admin',{
-         allWaiters
-    } 
+
+app.get('/admin', async function (req, res) {
+    let allWaiters = await routes.getAdmin()
+    res.render('admin', {
+        allWaiters
+    }
     );
 });
 
-app.get('/clear',async function(req,res){
+app.get('/admin', async function (req, res) {
     await Routes.clear()
     req.flash('message', "All Data Has Been Cleared !!")
- res.redirect('/admin')
+    res.redirect('/admin')
 
 });
+
+app.post('/clear',async function (req, res){
+        
+    res.redirect('/admin')
+});
+
 
 const PORT = process.env.PORT || 2040;
 
