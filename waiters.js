@@ -26,7 +26,7 @@ module.exports = function waiter(db) {
              await db.none(`INSERT INTO shifts (waiter_id,day_id) VALUES($1,$2)`, [waiters, element]);
         }
     }
-
+           
     async function getAdmin(weekDay) {
         let waiters = await db.manyOrNone("SELECT * from shifts join waiters on waiter_id = waiters.id join working_days on day_id = working_days.id where day = $1",[weekDay])
         return waiters
