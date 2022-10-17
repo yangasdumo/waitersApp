@@ -82,31 +82,32 @@ app.get('/days/:name', async function (req, res) {
 app.get('/admin', async function (req, res) {
     let mondayWaiters = await routes.getAdmin('monday');
     let tuesdayWaiters = await routes.getAdmin('tuesday');
-    let wednsdayaiters = await routes.getAdmin('wednesday');
+    let wednesdayWaiters = await routes.getAdmin('wednesday');
     let thursdayWaiters = await routes.getAdmin('thursday');
     let fridayWaiters = await routes.getAdmin('friday');
     let sartudayWaiters = await routes.getAdmin('saturday');
     let sundayWaiters = await routes.getAdmin('sunday');
+    let weeklyDays = await routes.daysSchedule();
     res.render('admin', {
         mondayWaiters,
         tuesdayWaiters,
-        wednsdayaiters,
+        wednesdayWaiters,
         thursdayWaiters,
         fridayWaiters,
         sartudayWaiters,
-        sundayWaiters
+        sundayWaiters,
+        weeklyDays,
     }
     );
 });
-
+ 
 app.get('/admin', async function (req, res) {
     res.redirect('/admin')
 });
 
 app.post('/admin',async function (req, res){
     await routes.clear()
-    req.flash('message', "All Data Has Been Cleared !!")
-        
+    req.flash('message', "All Data Has Been Cleared !!")     
     res.redirect('/admin')
 });
 

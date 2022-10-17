@@ -1,71 +1,82 @@
-<!DOCTYPE html>
 <html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <link rel="stylesheet" href="/css/style.css">
-</head>
+    <link rel="stylesheet" href="/css/style.css" />
+  </head>
 
-<body>
+  <body>
     <div class="message">
-        {{messages.message}}
+      {{messages.message}}
     </div>
 
     <h1 style="color:#141A46">Waiters Availability working Days</h1>
     <form action="/admin" method="POST">
-        <table style="width:100%">
-            <br>
-            <br>
-            <br>
-            <br>
-            <tr>
-                <th style="color: #141A46;">Sunday</th>
-                <th style="color: #141A46;">Monday</th>
-                <th style="color: #141A46;">Tuesday</th>
-                <th style="color: #141A46;">Wednesday</th>
-                <th style="color: #141A46;">Thursday</th>
-                <th style="color: #141A46;">Friday</th>
-                <th style="color: #141A46;">Saturday</th>
-            </tr>
-            <tr class="table">
-                {{#each sundayWaiters}}
-                <td>{{this.waiter}}</td>
-                {{/each}}
+      <table style="width:100%">
+        <br />
+        <br />
+        <br />
+        <br />
+        <tr>
+          {{#each weeklyDays}}
+            <th
+              style="color: #141A46;"
+              class="{{this.status}} day"
+            >{{this.weekDay}}</th>
+          {{/each}}
+        </tr>
+        <tr class="table">
 
-                {{#each mondayWaiters}}
-                <td>{{this.waiter}}</td>
-                {{/each}}
-                
-                 {{#each tuesdayWaiters}}
-                <td>{{this.waiter}}</td>
-                {{/each}}
-                  
-                  {{#each wednsdayaiters}}
-                <td>{{this.waiter}}</td>
-                {{/each}}
+          <td>
+            {{#each mondayWaiters}}
+              <li>{{this.waiter}}</li>
+            {{/each}}
+          </td>
 
-                 {{#each thursdayWaiters}}
-                <td>{{this.waiter}}</td>
-                {{/each}}
+          <td>
+            {{#each tuesdayWaiters}}
+              <li>{{this.waiter}}</li>
+            {{/each}}
+          </td>
 
-                {{#each fridayWaiters}}
-                <td>{{this.waiter}}</td>
-                {{/each}}
+          <td>
+            {{#each wednsdayaiters}}
+              <li>{{this.waiter}}</li>
+            {{/each}}
+          </td>
 
-                {{#each sartudayWaiters}}
-                <td>{{this.waiter}}</td>
-                {{/each}}
+          <td>
+            {{#each thursdayWaiters}}
+              <li>{{this.waiter}}</li>
+            {{/each}}
+          </td>
 
-            </tr>
+          <td>
+            {{#each fridayWaiters}}
+              <li>{{this.waiter}}</li>
+            {{/each}}
+          </td>
 
+          <td>
+            {{#each sartudayWaiters}}
+              <li>{{this.waiter}}</li>
+            {{/each}}
+          </td>
 
-        </table>
-       <button type="submit" class="btnblue" style="margin: 300px;">Clear Names</button>
+          <td>
+            {{#each sundayWaiters}}
+              <li>{{this.waiter}}</li>
+            {{/each}}
+          </td>
+        </tr>
+
+      </table>
+      <button type="submit" class="btnblue" style="margin: 300px;">Clear Names</button>
     </form>
-</body>
-<script src="/setTimeout.js"></script>
+  </body>
+  <script src="/setTimeout.js"></script>
 
 </html>

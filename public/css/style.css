@@ -63,7 +63,16 @@ transform: translateY(4px);
 th{
   font-size:30px;
 }
+ .overbooked{
+   background-color:red;
+ }
+ .booked{
+  background-color:green;
+}
 
+.available{
+  background-color:orange;
+}
 .table{
   font-size:25px ;
   color: aliceblue;
