@@ -49,13 +49,18 @@ const routes = Routes(db)
 
 app.get("/", function (req, res) {
     res.render("index", {
+        user:req.session.user
     });
 })
 
 app.post('/login', async function (req, res) {
     let name = req.body.letters;
-    await routes.addName(name);
-    let getTheName = await routes.getName(name);
+    let toUpperCase = name.toUpperCase();
+   let user = await routes.addName(toUpperCase);
+    if(user){
+        res.session.user = user
+    }
+    let getTheName = await routes.getName(toUpperCase);
     req.flash('message', "Welcome to the Waiters App !!")
     let myName = getTheName.waiter;
     res.redirect(`/days/${myName}`);
@@ -111,6 +116,10 @@ app.post('/admin',async function (req, res){
     res.redirect('/admin')
 });
 
+app.get('/logout', async function (req, res) {
+    delete req.session.user
+    res.redirect('/')
+});
 
 const PORT = process.env.PORT || 2040;
 
