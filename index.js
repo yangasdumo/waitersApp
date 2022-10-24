@@ -46,7 +46,6 @@ const db = pgp(config)
 
 const routes = Routes(db)
 
-
 app.get("/", function (req, res) {
     res.render("index", {
         user:req.session.user
@@ -56,11 +55,14 @@ app.get("/", function (req, res) {
 app.post('/login', async function (req, res) {
     let name = req.body.letters;
     let toUpperCase = name.toUpperCase();
-   let user = await routes.addName(toUpperCase);
+    // let output = await routes.checkDuplicates(name);
+    // if(Number(output.count)!==0){}
+    let user = await routes.addName(toUpperCase);
     if(user){
         res.session.user = user
     }
     let getTheName = await routes.getName(toUpperCase);
+
     req.flash('message', "Welcome to the Waiters App !!")
     let myName = getTheName.waiter;
     res.redirect(`/days/${myName}`);
@@ -77,9 +79,12 @@ app.post('/days/:name', async function (req, res) {
 });
 
 app.get('/days/:name', async function (req, res) {
+    let username = req.params.name
     let weekDays = await routes.selectDays()
+    let result = await routes.getcheckDay(username)
     res.render('days', {
-        weekDays
+        weekDays,
+        result
     }
     );
 });

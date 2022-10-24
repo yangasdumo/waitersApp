@@ -77,6 +77,10 @@ th{
   color: aliceblue;
   font-style: italic;
 }
+li{
+ list-style: none;
+}
+
 .NameEntered{
   width:200px ;
   height: 40px;

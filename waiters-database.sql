@@ -23,3 +23,5 @@ INSERT INTO working_days (day) VALUES ('thursday');
 INSERT INTO working_days (day) VALUES ('friday');
 INSERT INTO working_days (day) VALUES ('saturday');
 INSERT INTO working_days (day) VALUES ('sunday');
+
+select day from shifts join waiters on waiters.id = shifts.waiter_id join working_days on working_days.id = shifts.day_id where waiter ='SAV'
