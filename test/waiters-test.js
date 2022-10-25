@@ -23,7 +23,7 @@ const db = pgp(config);
 describe("The Waiters Availabilty  Database tests", async function () {
     
     beforeEach(async function(){
-        await db.none('delete from ')
+        await db.none('delete from shifts')
     }); 
         it("Should return all ", async function () {
         
@@ -44,7 +44,7 @@ describe("The Waiters Availabilty  Database tests", async function () {
 
         it("Should be no waiters in a database when the clear button is pressed ", async function () {
         
-           
+          
         }); 
 
         it("Should ", async function () {

@@ -1,4 +1,3 @@
-const { json } = require("express/lib/response");
 
 module.exports = function waiter(db) {
 
@@ -21,9 +20,11 @@ module.exports = function waiter(db) {
   // getting the the names of the admin 
   async function addAdmin(waiters, working_days) {
     // loop over your days
+    // console.log(working_days)
+    await db.none("DELETE FROM shifts WHERE waiter_id = $1", [waiters]);
     for (let i = 0; i < working_days.length; i++) {
       const element = working_days[i];
-      console.log(element);
+      console.log(element+'gfgfgfgfggf');
       await db.none(`INSERT INTO shifts (waiter_id,day_id) VALUES($1,$2)`, [waiters, element]);
     }
   }
@@ -47,9 +48,8 @@ module.exports = function waiter(db) {
   }
 
   async function getcheckDay(waitername) {
-    let useId = await db.manyOrNone("select day from working_days ");
-    // return useId   
-
+    let useId = await db.manyOrNone("select * from working_days ");
+   
     let result = await db.manyOrNone(" select day from shifts join waiters on waiters.id = shifts.waiter_id join working_days on working_days.id = shifts.day_id where waiter = $1", [waitername]);
 
     for (let i = 0; i < useId.length; i++) {
@@ -61,7 +61,6 @@ module.exports = function waiter(db) {
         }
       }
     }
-    console.log(useId);
     return useId
   }
 

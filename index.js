@@ -69,12 +69,20 @@ app.post('/login', async function (req, res) {
 });
 
 app.post('/days/:name', async function (req, res) {
-    let theName = req.params.name
+    let theName = req.params.name;
     let days = req.body.thedays;
+    // let workers = Array.isArray(days)? days:[days];
+    // // console.log(workers);
+    // workers = workers.filter((item) =>(item));
+    //      console.log(typeof workers);
+    //    if((typeof workers ) == ''|| [] ){
+
+    //    }
     let name = await routes.getName(theName)
-    await routes.selectDays(days);
+
+
     await routes.addAdmin(name.id,days);
-    req.flash('message', "Your days has been subbited !!");
+    req.flash('message', "Your days has been submited !!");
     res.redirect(`/days/${theName}`);
 });
 
@@ -82,6 +90,7 @@ app.get('/days/:name', async function (req, res) {
     let username = req.params.name
     let weekDays = await routes.selectDays()
     let result = await routes.getcheckDay(username)
+    // console.log(result)
     res.render('days', {
         weekDays,
         result
