@@ -5,7 +5,11 @@ module.exports = function waiter(db) {
     var staff = await db.oneOrNone("INSERT into waiters (waiter) values($1)", [name]);
     return staff;
   }
-
+  async function getTheNames() {
+    var staff = await db.manyOrNone("select * from waiters");
+    return staff;
+  }
+  
   async function getName(name) {
     let [getstaff] = await db.manyOrNone('select * from waiters where waiter=$1', [name]);
     return getstaff;
@@ -20,11 +24,12 @@ module.exports = function waiter(db) {
   // getting the the names of the admin 
   async function addAdmin(waiters, working_days) {
     // loop over your days
-    // console.log(working_days)
     await db.none("DELETE FROM shifts WHERE waiter_id = $1", [waiters]);
     for (let i = 0; i < working_days.length; i++) {
       const element = working_days[i];
-      console.log(element+'gfgfgfgfggf');
+      // const myname = getName(waiters);
+      // console.log(myname);
+      console.log(element);
       await db.none(`INSERT INTO shifts (waiter_id,day_id) VALUES($1,$2)`, [waiters, element]);
     }
   }
@@ -37,16 +42,25 @@ module.exports = function waiter(db) {
   async function clear() {
     let remove = await db.none('delete from shifts')
     return remove
+  }
 
+  async function Theclear() {
+    let remove = await db.manyOrNone('delete from waiters')
+    return remove
+  }
+
+
+  async function getAllShift() {
+    let remove = await db.manyOrNone('select day_id,waiter_id from shifts')
+    return remove
   }
 
   async function checkDayCount(day) {
     let dayId = await db.oneOrNone("select id from working_days where day = $1", [day]);
-
     let results = await db.oneOrNone("select count(day) from shifts join working_days on shifts.day_id = working_days.id  where shifts.day_id = $1", [dayId.id]);
     return results.count;
   }
-
+         
   async function getcheckDay(waitername) {
     let useId = await db.manyOrNone("select * from working_days ");
    
@@ -63,8 +77,6 @@ module.exports = function waiter(db) {
     }
     return useId
   }
-
-
 
 
 
@@ -94,6 +106,9 @@ module.exports = function waiter(db) {
     clear,
     daysSchedule,
     checkDayCount,
-    getcheckDay
+    getcheckDay,
+    getAllShift,
+    getTheNames,
+    Theclear
   }
 }

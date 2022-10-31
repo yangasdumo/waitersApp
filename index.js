@@ -48,17 +48,15 @@ const routes = Routes(db)
 
 app.get("/", function (req, res) {
     res.render("index", {
-        user:req.session.user
+        user: req.session.user
     });
 })
 
 app.post('/login', async function (req, res) {
     let name = req.body.letters;
     let toUpperCase = name.toUpperCase();
-    // let output = await routes.checkDuplicates(name);
-    // if(Number(output.count)!==0){}
     let user = await routes.addName(toUpperCase);
-    if(user){
+    if (user) {
         res.session.user = user
     }
     let getTheName = await routes.getName(toUpperCase);
@@ -71,17 +69,12 @@ app.post('/login', async function (req, res) {
 app.post('/days/:name', async function (req, res) {
     let theName = req.params.name;
     let days = req.body.thedays;
-    // let workers = Array.isArray(days)? days:[days];
-    // // console.log(workers);
-    // workers = workers.filter((item) =>(item));
-    //      console.log(typeof workers);
-    //    if((typeof workers ) == ''|| [] ){
-
-    //    }
-    let name = await routes.getName(theName)
-
-
-    await routes.addAdmin(name.id,days);
+    let workers = Array.isArray(days) ? days : [days];
+   var  work = workers.filter(function(item) {return typeof item === "string";}).length;
+      if(work >= 3){
+          let name = await routes.getName(theName);
+          await routes.addAdmin(name.id, days);
+      }
     req.flash('message', "Your days has been submited !!");
     res.redirect(`/days/${theName}`);
 });
@@ -90,7 +83,6 @@ app.get('/days/:name', async function (req, res) {
     let username = req.params.name
     let weekDays = await routes.selectDays()
     let result = await routes.getcheckDay(username)
-    // console.log(result)
     res.render('days', {
         weekDays,
         result
@@ -119,14 +111,14 @@ app.get('/admin', async function (req, res) {
     }
     );
 });
- 
+
 app.get('/admin', async function (req, res) {
     res.redirect('/admin')
 });
 
-app.post('/admin',async function (req, res){
+app.post('/admin', async function (req, res) {
     await routes.clear()
-    req.flash('message', "All Data Has Been Cleared !!")     
+    req.flash('message', "All Data Has Been Cleared !!")
     res.redirect('/admin')
 });
 
