@@ -27,8 +27,6 @@ module.exports = function waiter(db) {
     await db.none("DELETE FROM shifts WHERE waiter_id = $1", [waiters]);
     for (let i = 0; i < working_days.length; i++) {
       const element = working_days[i];
-      // const myname = getName(waiters);
-      // console.log(myname);
       console.log(element);
       await db.none(`INSERT INTO shifts (waiter_id,day_id) VALUES($1,$2)`, [waiters, element]);
     }
